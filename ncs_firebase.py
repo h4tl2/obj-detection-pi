@@ -91,6 +91,7 @@ def predict(image, graph):
 	# return the list of predictions to the calling function
 	return predictions
 
+
 def post_data(pred_class, pred_boxpts):
 	#data = json.dumps({'pred_class': CLASSES[pred_class],'pred_boxpts': pred_boxpts})
 	dtfb = {'pred_class': CLASSES[pred_class],'pred_boxpts': pred_boxpts, 'timestamp': time.time()}
@@ -168,8 +169,8 @@ while True:
 					"boxpoints={}".format(i, CLASSES[pred_class], pred_conf,
 					pred_boxpts))
 
-			        # sending to firebase
-        			resultfb = post_data(pred_class, pred_boxpts)
+			  # sending to firebase
+        resultfb = post_data(pred_class, pred_boxpts)
 				print("[Firebase]: ",resultfb)
 
 				# check if we should show the prediction data
