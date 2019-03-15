@@ -92,8 +92,8 @@ def predict(image, graph):
 
 def post_data(pred_class, pred_conf, pred_boxpts):
   data = {'pred_class': pred_class, 'pred_conf': pred_conf, 'pred_boxpts': pred_boxpts}
-  print(firebase.post('detection', data))
-	return
+  result = firebase.post('detection', data)
+	return result
 
 
 # construct the argument parser and parse the arguments
@@ -167,7 +167,8 @@ while True:
 					pred_boxpts))
 
         # sending to firebase
-        post_data(pred_class,pred_conf,pred_boxpts)
+        resultfb = post_data(pred_class,pred_conf,pred_boxpts)
+				print("[Firebase]: ",resultfb)
 
 				# check if we should show the prediction data
 				# on the frame
