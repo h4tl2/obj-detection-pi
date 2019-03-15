@@ -91,7 +91,7 @@ def predict(image, graph):
 	return predictions
 
 def post_data(pred_class, pred_conf, pred_boxpts):
-  data = {'pred_class': pred_class, 'pred_conf': pred_conf, 'pred_boxpts': pred_boxpts}
+	data = {'pred_class': pred_class, 'pred_conf': pred_conf, 'pred_boxpts': pred_boxpts}
   result = firebase.post('detection', data)
 	return result
 
