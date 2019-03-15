@@ -93,6 +93,7 @@ def predict(image, graph):
 def post_data(pred_class, pred_conf, pred_boxpts):
   data = {'pred_class': pred_class, 'pred_conf': pred_conf, 'pred_boxpts': pred_boxpts}
   print(firebase.post('detection', data))
+	return
 
 
 # construct the argument parser and parse the arguments
