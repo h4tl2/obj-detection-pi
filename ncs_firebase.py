@@ -7,6 +7,7 @@ from mvnc import mvncapi as mvnc
 from imutils.video import VideoStream
 from imutils.video import FPS
 import argparse
+import json
 import numpy as np
 import time
 import cv2
@@ -90,10 +91,11 @@ def predict(image, graph):
 	# return the list of predictions to the calling function
 	return predictions
 
-def post_data(pred_class, pred_conf, pred_boxpts):
-	data = {'pred_class': pred_class, 'pred_conf': pred_conf, 'pred_boxpts': pred_boxpts}
-	result = firebase.post('detection', data)
-	return result
+def post_data(pred_class, pred_boxpts):
+	#data = json.dumps({'pred_class': CLASSES[pred_class],'pred_boxpts': pred_boxpts})
+	dtfb = {'pred_class': CLASSES[pred_class],'pred_boxpts': pred_boxpts, 'timestamp': time.time()}
+	result = firebase.post('detection', dtfb)
+	return result 
 
 
 # construct the argument parser and parse the arguments
@@ -166,8 +168,8 @@ while True:
 					"boxpoints={}".format(i, CLASSES[pred_class], pred_conf,
 					pred_boxpts))
 
-        # sending to firebase
-        resultfb = post_data(pred_class,pred_conf,pred_boxpts)
+			        # sending to firebase
+        			resultfb = post_data(pred_class, pred_boxpts)
 				print("[Firebase]: ",resultfb)
 
 				# check if we should show the prediction data
