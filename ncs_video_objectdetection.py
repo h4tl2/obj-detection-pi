@@ -166,7 +166,7 @@ while True:
 					pred_boxpts))
 
 				# sending to firebase
-        resultfb = post_data(pred_class, pred_boxpts)
+        			resultfb = post_data(pred_class, pred_boxpts)
 				print("[Firebase]: ",resultfb)
 
 				# check if we should show the prediction data
