@@ -25,10 +25,14 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--verbose", default=1,help="show verbose")
 ap.add_argument("-d", "--display", type=int, default=0, help="switch to display image on screen")
+ap.add_argument("-t", "--threshold", type=int, default=0.5, help="threshold for prediction")
 args = vars(ap.parse_args())
 
 print("[INFO] initializing firebase")
 firebase = firebase.FirebaseApplication('https://pi-movidius.firebaseio.com/', None)
+
+print("[INFO] threshold".format(args["threshold"]))
+threshold = args["threshold"]
 
 def point2ratio(region):
     global w, h
