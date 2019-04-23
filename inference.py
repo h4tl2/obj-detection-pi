@@ -52,18 +52,22 @@ class VideoConnection(object):
             cv2.resize(frame, (0,0), fx=self._scale, fy=self._scale)
         return ret, frame
 
-    def get(self, skip=0):
+    def get(self, skip=0, wait_for_skip=0):
         while True:
             try:
-                ret, frame = self._cap.read()
+                ts = time.time()
+                img = self._cap.grab()
                 for i in range(skip):
-                    self._cap.grab()
+                    img = self._cap.grab()
+                    if time.time() - ts > wait_for_skip:
+                        break
+                ret, frame = self._cap.retrieve()
+                h, w, _ = frame.shape
                 if self._scale != 1.0:
                     frame = cv2.resize(frame, (0,0), fx=self._scale, fy=self._scale)
                 break
             except:
                 print("Video Connection lost. Trying to reconnect the camera...")
-                break
                 self._cap = cv2.VideoCapture(self._rtsp_path)
         return ret, frame
 
