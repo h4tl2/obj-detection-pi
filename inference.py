@@ -26,6 +26,8 @@ ap.add_argument("-v", "--verbose", default=1,help="show verbose")
 ap.add_argument("-d", "--display", type=int, default=0, help="switch to display image on screen")
 args = vars(ap.parse_args())
 
+print("[INFO] initializing firebase")
+firebase = firebase.FirebaseApplication('https://pi-movidius.firebaseio.com/', None)
 
 def point2ratio(region):
     global w, h
