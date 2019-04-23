@@ -207,8 +207,6 @@ while(True):
     json_data = {
         "count": len(result),
         "position": result,
-        "catagories": result,
-        "catagory_names": annotation,
         "timestamp": st,
         "having_human": confidence[0],
         "infer_time": ptime,
