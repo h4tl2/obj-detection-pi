@@ -174,6 +174,10 @@ def post_data(object):
 	return result 
 
 
+confidence = [[0.5]*len(region)]
+
+inc_conf = lambda x, i: min(max(x + (i*2-1)*0.1, 0.), 1.)
+
 print("[INFO] Start Prediction")
 while(True):
     time_start = time.time() # start time
