@@ -215,8 +215,7 @@ while(True):
         "overall_time": infer_time,
     }
 
-    if args["verbose"] == 1:
-        print("[DATA]",json_data)
+    print("[DATA]",json_data)
     post_data(json_data)
     
     if (True):
