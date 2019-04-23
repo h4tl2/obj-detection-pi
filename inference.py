@@ -168,7 +168,10 @@ h = 0
 print("[INFO] Loading graph")
 net = TFAPI()
 print("[INFO] Connect to RTSP or VIDEO")
-cam = VideoConnection("./videos/NVR_ch3_main_20180826120000_20180826130000_1.mp4", scale=1)
+#cam = VideoConnection("./videos/NVR_ch3_main_20180826120000_20180826130000_1.mp4", scale=1)
+cam = VideoConnection("./videos/NVR_ch3_main_20180826150000_20180826160000.mp4", scale=1) # HD 2 GB
+#cam = VideoConnection("./videos/NVR_ch3_main_20190120170149_20190120180000.mp4", scale=1) # HD 1.2 GB 
+
 
 def post_data(object):
 	result = firebase.post('detection', object)
