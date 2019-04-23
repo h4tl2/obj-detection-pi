@@ -217,12 +217,8 @@ while(True):
 
     if args["verbose"] == 1:
         print("[DATA]",json_data)
-    if push_firebase == 1 and ref_time - last_push_fb > FLAGS.send_fb_time:
-            last_push_fb = ref_time
-            firebase.push_data(json_data)
     post_data(json_data)
     
-
     if (True):
         _p = 0
         for k in range(len(region)):
